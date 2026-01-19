@@ -1,0 +1,22 @@
+flowchart TD
+    subgraph "Data Sources"
+        A[Endpoints (Windows/Linux)] -->|Beats/Poller| B(Log Collector / Forwarder)
+        C[Firewalls] -->|Syslog| B
+        D[Cloud Apps] -->|API Pull| B
+    end
+
+    subgraph "Ingestion & Processing"
+        B -->|Encrypted TLS| E{Kafka / Message Queue}
+        E -->|Stream| F[Log Logstash / Parsing]
+        F -->|Structured JSON| G[(Hot Storage - Elasticsearch)]
+    end
+
+    subgraph "Storage & integrity"
+        G -->|Archive Policy| H[(Cold Storage - S3/Glacier)]
+        H -->|WORM Lock| H
+    end
+
+    subgraph "Analysis"
+        G -->|Query| I[SIEM Dashboard / Kibana]
+        I -->|Alert| J[SOC Analyst]
+    end

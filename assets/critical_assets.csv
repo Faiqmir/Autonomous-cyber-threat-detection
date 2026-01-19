@@ -1,0 +1,6 @@
+Asset ID,Hostname,IP Address,Asset Owner,Criticality (1-5),Data Classification,OS/Firmware,Location,Primary Function,Log Source Enabled?
+SVR-001,dc-primary,10.10.1.10,IT Ops,5,Confidential,Windows Server 2022,On-Prem,Domain Controller,Yes
+DB-004,prod-db-customer,10.10.5.50,Data Team,5,Restricted (PII),Ubuntu 22.04/Postgres,AWS,Customer Database,Yes
+FW-Edge,fw-edge-01,192.168.1.1,NetSec,5,Internal,Palo Alto PAN-OS,Perimeter,Edge Firewall,Yes
+APP-010,web-portal,10.10.20.5,AppTeam A,4,Public/Internal,RHEL 9,On-Prem,Client Portal,No
+LPT-EXEC,ceo-laptop,DHCP,Exec Support,4,Confidential,Windows 11,Roaming,Executive Workstation,Yes

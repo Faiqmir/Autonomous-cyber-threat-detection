@@ -1,0 +1,26 @@
+title: Suspicious PowerShell Download
+id: 5f1f759f-d9d3-4d6b-81e5-8a6e71d7c0f1
+status: experimental
+description: Detects the use of PowerShell to download content from the internet, which is a common technique used by malware droppers.
+author: Cyber Defense Team
+date: 2026-01-19
+logsource:
+    product: windows
+    service: powershell
+detection:
+    selection:
+        EventID: 4104
+        ScriptBlockText|contains:
+            - 'Invoke-WebRequest'
+            - 'iwr'
+            - 'wget'
+            - 'Net.WebClient'
+            - 'DownloadFile'
+    condition: selection
+falsepositives:
+    - Administrative scripts updating software
+    - Build servers downloading dependencies
+level: medium
+tags:
+    - attack.execution
+    - attack.t1059.001
